@@ -1,0 +1,5 @@
+Flask
+BeautifulSoup4
+lxml
+requests
+git+https://github.com/ZoeMeow5466/DUTAPI.git@python
