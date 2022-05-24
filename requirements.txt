@@ -1,5 +1,6 @@
-Flask
+gunicorn
 BeautifulSoup4
+Flask
 lxml
 requests
-git+https://github.com/ZoeMeow5466/DUTAPI.git@python
+git+https://github.com/ZoeMeow5466/DUTAPI.Python.git
