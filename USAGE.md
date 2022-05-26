@@ -8,6 +8,7 @@
   - [Logout](#logout)
   - [Get subjects schedule](#get-subjects-schedule)
   - [Get subjects fee](#get-subjects-fee)
+  - [Get account information](#get-account-information)
 
 ## Base URL
 - https://dutapi.herokuapp.com
@@ -124,3 +125,22 @@ Examples:
 ```
 
 [Go to TOC](#table-of-contents)
+
+### Get account information
+```
+[POST] /account?type=accinfo
+```
+
+Parameters:
+- sid: Session ID.
+
+
+Returns:
+- If one of parameters above is missing, will return 400 Bad Request.
+- If "sid" not logged in, will return 401.
+- If successful, will return 200 and account information.
+
+Examples:
+```
+/account?type=accinfo?sid=48239r78293urjd23
+```
