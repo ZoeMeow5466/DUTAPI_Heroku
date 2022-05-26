@@ -73,6 +73,23 @@ def SubjectFee(sessionid: str, year: int, semester: int, insummer: int):
         repCode = 400
     return Response(repText, status=repCode, mimetype=repType)
 
+def GetAccInfo(sessionid: str):
+    repText = None
+    repCode = 200
+    repType = "text/html; charset=utf-8"
+    if sessionid != None:
+        if dutapi.IsLoggedIn(sessionid)['loggedin'] == True:
+            repText = json.dumps(dutapi.GetAccountInformation(sessionid), ensure_ascii=False).encode('UTF-8')
+            repCode = 200
+            repType = "application/json"            
+        else:
+            repText = "Unauthorized"
+            repCode = 401
+    else:
+        repText = 'Bad request!'
+        repCode = 400
+    return Response(repText, status=repCode, mimetype=repType)
+
 # Get news
 def GetNews(type: dutapi.NewsType, page: int):
     repText = None

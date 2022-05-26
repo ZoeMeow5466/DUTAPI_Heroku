@@ -22,6 +22,9 @@ def account():
         elif sType.lower() == 'subjectfee':
             if request.method == 'POST':
                 return dutapi_fun.SubjectFee(request.args.get('sid'), request.args.get('year'), request.args.get('semester'), request.args.get('insummer'))
+        elif sType.lower() == 'accinfo':
+            if request.method == 'POST':
+                return dutapi_fun.GetAccInfo(request.args.get('sid'))
         else:
             return Response('Bad request!', status=400, mimetype='text/html; charset=utf-8')
     # If something went wrong, will return back to homepage.
