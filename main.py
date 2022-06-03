@@ -29,6 +29,7 @@ def account():
             return Response('Bad request!', status=400, mimetype='text/html; charset=utf-8')
     # If something went wrong, will return back to homepage.
     except Exception as err:
+        print(err)
         return Response('Internal Server Error!', status=500, mimetype='text/html; charset=utf-8')
  
 @app.route('/news', methods=['GET'])
