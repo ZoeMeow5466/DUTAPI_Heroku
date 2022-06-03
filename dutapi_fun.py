@@ -12,7 +12,7 @@ def Login(username: str, password: str):
     if username != None and password != None:
         repText = dutapi.Login(token, username, password)
         repCode = 200
-        if repText['loggedin'] == False:
+        if repText['logged_in'] == False:
             repCode = 401
         repText = json.dumps(repText, ensure_ascii=False).encode('UTF-8')
         repType = "application/json" 
@@ -28,7 +28,7 @@ def Logout(sessionid: str):
     repType = "text/html; charset=utf-8"
     if sessionid != None:
         repText = dutapi.Logout(sessionid)
-        if repText['loggedin'] == True:
+        if repText['logged_in'] == True:
             repCode = 401
         repText = json.dumps(repText, ensure_ascii=False).encode('UTF-8')
         repType = "application/json"   
@@ -43,7 +43,7 @@ def SubjectSchedule(sessionid: str, year: int, semester: int, insummer: int):
     repCode = 200
     repType = "application/text"
     if sessionid != None and year != None and semester != None and insummer != None:
-        if dutapi.IsLoggedIn(sessionid)['loggedin'] == True:
+        if dutapi.IsLoggedIn(sessionid)['logged_in'] == True:
             repText = json.dumps(dutapi.GetSubjectSchedule(sessionid, year, semester, True if insummer == 1 else False), ensure_ascii=False).encode('UTF-8')
             repCode = 200
             repType = "application/json"            
@@ -61,7 +61,7 @@ def SubjectFee(sessionid: str, year: int, semester: int, insummer: int):
     repCode = 200
     repType = "text/html; charset=utf-8"
     if sessionid != None and year != None and semester != None and insummer != None:
-        if dutapi.IsLoggedIn(sessionid)['loggedin'] == True:
+        if dutapi.IsLoggedIn(sessionid)['logged_in'] == True:
             repText = json.dumps(dutapi.GetSubjectFee(sessionid, year, semester, True if insummer == 1 else False), ensure_ascii=False).encode('UTF-8')
             repCode = 200
             repType = "application/json"            
@@ -78,7 +78,7 @@ def GetAccInfo(sessionid: str):
     repCode = 200
     repType = "text/html; charset=utf-8"
     if sessionid != None:
-        if dutapi.IsLoggedIn(sessionid)['loggedin'] == True:
+        if dutapi.IsLoggedIn(sessionid)['logged_in'] == True:
             repText = json.dumps(dutapi.GetAccountInformation(sessionid), ensure_ascii=False).encode('UTF-8')
             repCode = 200
             repType = "application/json"            
