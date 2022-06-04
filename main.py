@@ -38,10 +38,26 @@ def getNews():
     page = request.args.get('page')
     if request.method == 'GET':
         return dutapi_fun.GetNews(sType, page)
-        
+
+@app.route('/utils', methods=['GET'])
+def getUtils():
+    sType = request.args.get('type')
+    sTypeWeek = request.args.get('week')
+    try:
+        if request.method == 'GET':
+            if sType == None or len(sType) == 0:
+                raise Exception("Invalid value!")
+            elif sType.lower() == 'weekrange':
+                return dutapi_fun.GetWeekRange(sTypeWeek)
+            else:
+                raise Exception("No arguments provided.")
+    except Exception as err:
+        print(err)
+        return Response('Internal Server Error!', status=500, mimetype='text/html; charset=utf-8')
+          
 @app.route('/')
 def index():
-    return Response("DUTAPI", status=200, mimetype="text/html; charset=utf-8")  
+    return Response("DUTAPI", status=200, mimetype="text/html; charset=utf-8")
 
 if __name__ == '__main__':
     app.run()

@@ -112,3 +112,18 @@ def GetNews(type: dutapi.NewsType, page: int):
         repCode = 500
     finally:
         return Response(repText, status=repCode, mimetype=repType)    
+
+def GetWeekRange(type: str):
+    repText = None
+    repCode = 200
+    repType = "application/json"
+    if type == None or len(type) == 0:
+        raise Exception("Invalid value!")
+    elif type.lower() == "current":
+        repText = dutapi.GetCurrentWeek()
+        repType = "application/text"
+        return Response(repText, status=repCode, mimetype=repType)
+    elif type.lower() == "week":
+        repText = dutapi.SCHOOLYEAR_START
+        repType = "application/json"
+        return Response(repText, status=repCode, mimetype=repType)
